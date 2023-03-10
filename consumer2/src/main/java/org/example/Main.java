@@ -45,12 +45,16 @@ public class Main {
     public static void saveData(JsonObject json) {
         String swipe = json.get("swipe").getAsString();
         int swiper = json.get("swiper").getAsInt();
-        System.out.println(swiper);
-        if (!like.contains(swiper)) {
-            like.put(swiper, new ConcurrentLinkedQueue<>());
+        int swipee = json.get("swipee").getAsInt();
+        System.out.println(swipee);
+        if (!like.containsKey(swipee)) {
+            like.put(swipee, new ConcurrentLinkedQueue<>());
         }
-        if (swipe.equals("Left")) {
-            like.get(swiper).add(json.get("swipee").getAsInt());
+        if (swipe.equals("Right")) {
+            while (like.get(swipee).size() >= 100) {
+                like.get(swipee).poll();
+            }
+            like.get(swipee).add(swiper);
         }
     }
 }

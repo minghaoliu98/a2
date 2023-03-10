@@ -44,15 +44,12 @@ public class Main {
     public static void saveData(JsonObject json) {
 
         String swipe = json.get("swipe").getAsString();
-        int swiper = json.get("swiper").getAsInt();
-        System.out.println(swiper);
+        int swipee = json.get("swipee").getAsInt();
+        System.out.println(swipee);
         if (swipe.equals("right")) {
-            like.put(swiper, like.getOrDefault(swiper, 0)+ 1);
+            like.put(swipee, like.getOrDefault(swipee, 0)+ 1);
         } else {
-            if (!dislike.containsKey(swiper)) {
-                dislike.put(swiper, 0);
-            }
-            dislike.put(swiper, dislike.getOrDefault(swiper, 0) + 1);
+            dislike.put(swipee, dislike.getOrDefault(swipee, 0) + 1);
         }
     }
 }
